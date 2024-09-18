@@ -19,7 +19,7 @@
         <main>
             <h1>Administación</h1>
             <div class="crear">
-                <button class="nuevoRegistro">Registrar nueva película</button>
+               <a href="crearPelicula.php"> <button class="nuevoRegistro">Registrar nueva película</button></a>
             </div>
             <table class="tabla-peliculas">
                 <thead>
