@@ -35,7 +35,11 @@
                             <td><?php echo $pelicula['id']; ?></td>
                             <td><?php echo $pelicula['titulo']; ?></td>
                             <td class="precio"><?php echo $pelicula['precio'] ?> €</td>
-                            <td class="td-icono"><button>🖋️</button></td>
+                            <td class="td-icono">
+                                <button
+                                class="btn-modificar"
+                                data-id="<?php echo $pelicula['id']; ?>"
+                                >🖋️</button></td>
                             <td class="td-icono">
                                 <button 
                                 class="btn-eliminar" 

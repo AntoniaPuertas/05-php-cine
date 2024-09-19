@@ -3,7 +3,13 @@ session_start();
 
 require 'funciones_peliculas.php';
 
-if(isset($_POST) && isset($_POST['metodo']) && $_POST['metodo'] === 'crear'){
+$metodo = '';
+
+if(isset($_POST) && isset($_POST['metodo'])){
+    $metodo = $_POST['metodo'];
+}
+
+if($metodo === 'crear'){
     $titulo = $_POST['titulo'];
     $precio = $_POST['precio'];
     $director = $_POST['directores'];
@@ -27,7 +33,7 @@ if(isset($_POST) && isset($_POST['metodo']) && $_POST['metodo'] === 'crear'){
 
 
 
-if (isset($_POST) && isset($_POST['metodo']) && $_POST['metodo'] === 'delete') {
+if ($metodo === 'delete') {
 
     $id = $_POST['id'];
     //llama a eliminar pelicula
@@ -39,8 +45,17 @@ if (isset($_POST) && isset($_POST['metodo']) && $_POST['metodo'] === 'delete') {
         //la base de datos nos devuelve un error
         echo json_encode(['success' => false, 'message' => 'Datos inválidos']);
     }
-}else{
-        //no vienen los datos necesarios
-        echo json_encode(['success' => false, 'message' => 'Método no permitido']);
-}   
+}
+// else{
+//         //no vienen los datos necesarios
+//         echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+// }  
+
+if ($metodo === 'modificar'){
+    $id = $_POST['id'];
+    //llamar a crearPelicula.php
+    //pasarle el id de la pelicula a modificar
+    header("Location: ../crearPelicula.php?id=$id");
+    exit();
+}
 

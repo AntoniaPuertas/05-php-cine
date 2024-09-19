@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+//comprobar de dónde viene la llamada
     require 'includes/funciones_directores.php';
     $lista_directores = obtener_directores();
 ?>
