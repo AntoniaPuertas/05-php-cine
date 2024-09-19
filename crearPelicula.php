@@ -17,6 +17,7 @@ session_start();
     <div class="container">
         <h1>Registrar nueva película</h1>
         <form class="formulario-creacion" action="includes/control_peliculas.php" method="post">
+            <input type="hidden" name="metodo" value="crear">
             <div class="campo-form">
                 <label for="titulo">Título:</label>
                 <input type="text" name="titulo" required>
@@ -53,7 +54,7 @@ session_start();
                 }
                 echo "</ul>";
                 
-                unset($_SESSION['datos_insertados']);
+                unset($_SESSION['datos_insertados']);//limpiar los datos después de mostrarlos
             }
         ?>
     </div>

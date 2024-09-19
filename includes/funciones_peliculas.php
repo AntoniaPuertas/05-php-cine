@@ -1,5 +1,5 @@
 <?php
-
+//Consultas a la tabla películas
 function obtener_peliculas(){
     //importar conexion
     require 'database.php';
@@ -34,7 +34,13 @@ function modificar_pelicula(){
 
 }
 
-function eliminar_pelicula(){
-
+function eliminar_pelicula($id){
+    //importar conexion
+    require 'database.php';
+    //crear la consulta
+    $sql = "DELETE FROM pelicula WHERE id=$id;";
+    //realizar la consulta
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
 }
 
