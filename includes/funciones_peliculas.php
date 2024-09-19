@@ -13,8 +13,16 @@ function obtener_peliculas(){
 
 }
 
-function obtener_pelicula_por_id(){
+function obtener_pelicula_por_id($id){
+        //importar conexion
+        require 'database.php';
 
+        //preparar la consulta
+        $sql = "SELECT * FROM pelicula WHERE id=$id;";
+    
+        //realizar la consulta
+        $resultado = mysqli_query($conexion, $sql);
+        return $resultado;
 }
 
 function crear_Pelicula($titulo, $precio, $director){
@@ -30,8 +38,17 @@ function crear_Pelicula($titulo, $precio, $director){
     return $resultado;
 }
 
-function modificar_pelicula(){
+function modificar_pelicula($id, $titulo, $precio, $director){
+    //importar conexion
+    require 'database.php';
 
+    //crear la consulta
+    $sql = "UPDATE pelicula SET titulo = '$titulo', precio = $precio, id_director = $director  WHERE id = $id";
+
+    //realizar la consulta
+    $resultado = mysqli_query($conexion, $sql);
+
+    return $resultado;
 }
 
 function eliminar_pelicula($id){

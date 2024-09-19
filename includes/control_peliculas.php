@@ -19,6 +19,7 @@ if($metodo === 'crear'){
 
     if ($respuesta) {
         $_SESSION['mensaje'] = "Los datos se insertaron correctamente.";
+        $_SESSION['accion'] = "Última película guardada";
         $_SESSION['datos_insertados'] = [
             'titulo' => $titulo,
             'precio' => $precio,
@@ -46,16 +47,38 @@ if ($metodo === 'delete') {
         echo json_encode(['success' => false, 'message' => 'Datos inválidos']);
     }
 }
-// else{
-//         //no vienen los datos necesarios
-//         echo json_encode(['success' => false, 'message' => 'Método no permitido']);
-// }  
+
 
 if ($metodo === 'modificar'){
-    $id = $_POST['id'];
+    $_SESSION['idPelicula'] = $_POST['idPelicula'];
+    $_SESSION['metodo'] = 'modificar';
     //llamar a crearPelicula.php
     //pasarle el id de la pelicula a modificar
-    header("Location: ../crearPelicula.php?id=$id");
+    header("Location: ../crearPelicula.php");
+    exit();
+}
+
+if($metodo === 'modificacion'){
+
+    $id = $_POST['id'];
+    $titulo = $_POST['titulo'];
+    $precio = $_POST['precio'];
+    $director = $_POST['directores'];
+
+    $respuesta = modificar_pelicula($id, $titulo, $precio, $director);
+
+    if ($respuesta) {
+        $_SESSION['mensaje'] = "Los datos se modificaron correctamente.";
+        $_SESSION['accion'] = "Película modificada";
+        $_SESSION['datos_insertados'] = [
+            'titulo' => $titulo,
+            'precio' => $precio,
+            'director' => $director
+        ];
+    } else {
+        $_SESSION['mensaje'] = "Error: " . mysqli_connect_error();
+    }
+    header("Location: ../crearPelicula.php");
     exit();
 }
 
