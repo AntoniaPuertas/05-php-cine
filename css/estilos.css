@@ -103,7 +103,8 @@ table tr:nth-child(odd) {
 
 /* Formulario para nuevos registros */
 
-.formulario-creacion{
+.formulario-creacion, 
+.resultadoConsulta{
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
@@ -144,4 +145,7 @@ table tr:nth-child(odd) {
 
   .box select:hover{
     background-color: #6f9878;
+}
+.resultadoConsulta{
+    margin-top: 1rem;
 }

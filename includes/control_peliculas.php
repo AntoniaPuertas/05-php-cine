@@ -4,12 +4,28 @@ session_start();
 require 'funciones_peliculas.php';
 
 $metodo = '';
-
 if(isset($_POST) && isset($_POST['metodo'])){
     $metodo = $_POST['metodo'];
 }
 
-if($metodo === 'crear'){
+switch($metodo){
+    case 'crear':
+        crearPelicula();
+        break;
+    case 'delete':
+        deletePelicula();
+        break;
+    case 'modificar':
+        modificarPelicula();
+        break;
+    case 'modificacion':
+        modificacionPelicula();
+        break;
+    default:
+        return 'Método no permitido';
+}
+
+function crearPelicula(){
     $titulo = $_POST['titulo'];
     $precio = $_POST['precio'];
     $director = $_POST['directores'];
@@ -30,11 +46,7 @@ if($metodo === 'crear'){
     header("Location: ../crearPelicula.php");
     exit();
 }
-
-
-
-if ($metodo === 'delete') {
-
+function deletePelicula(){
     $id = $_POST['id'];
     //llama a eliminar pelicula
     $respuesta = eliminar_pelicula($id);
@@ -46,16 +58,32 @@ if ($metodo === 'delete') {
         echo json_encode(['success' => false, 'message' => 'Datos inválidos']);
     }
 }
-// else{
-//         //no vienen los datos necesarios
-//         echo json_encode(['success' => false, 'message' => 'Método no permitido']);
-// }  
-
-if ($metodo === 'modificar'){
-    $id = $_POST['id'];
-    //llamar a crearPelicula.php
-    //pasarle el id de la pelicula a modificar
-    header("Location: ../crearPelicula.php?id=$id");
-    exit();
+function modificarPelicula(){
+    $_SESSION['idPelicula'] = $_POST['idPelicula'];
+    $_SESSION['metodo'] = $_POST['metodo'];
+    header("Location: ../crearPelicula.php");
 }
+function modificacionPelicula(){
+    $id = $_POST['id'];
+    $titulo = $_POST['titulo'];
+    $precio = $_POST['precio'];
+    $director = $_POST['directores'];
+
+
+    $respuesta = modificar_pelicula($id, $titulo, $precio, $director);
+
+    if ($respuesta) {
+        $_SESSION['mensaje'] = "Los datos se modificaron correctamente.";
+        $_SESSION['datos_insertados'] = [
+            'titulo' => $titulo,
+            'precio' => $precio,
+            'director' => $director
+        ];
+    } else {
+        $_SESSION['mensaje'] = "Error: " . mysqli_connect_error();
+    }
+    header("Location: ../crearPelicula.php");
+    exit();   
+}
+
 
