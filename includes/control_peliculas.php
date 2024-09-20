@@ -35,6 +35,7 @@ function crearPelicula(){
 
     if ($respuesta) {
         $_SESSION['mensaje'] = "Los datos se insertaron correctamente.";
+        $_SESSION['accion'] = "Última película guardada";
         $_SESSION['datos_insertados'] = [
             'titulo' => $titulo,
             'precio' => $precio,

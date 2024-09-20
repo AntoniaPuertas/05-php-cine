@@ -3,6 +3,8 @@ session_start();
     require 'includes/funciones_directores.php';
     require 'includes/funciones_peliculas.php';
 
+    require 'includes/funciones_peliculas.php';
+
     $lista_directores = obtener_directores();
 
     //comprobar de dónde viene la llamada
@@ -33,6 +35,8 @@ session_start();
         <form class="formulario-creacion" action="includes/control_peliculas.php" method="post">
             <input type="hidden" name="metodo" value="<?php echo ($pelicula != '') ? 'modificacion' : 'crear' ?>">
             <input type="hidden" name="id" value="<?php echo ($pelicula != '') ? $pelicula['id'] : '' ?>">
+            <input type="hidden" name="metodo" value="<?php echo ($pelicula != '') ? 'modificacion' : 'crear' ?>">
+            <input type="hidden" name="id" value="<?php echo ($pelicula != '') ? $pelicula['id'] : '' ?>">
             <div class="campo-form">
                 <label for="titulo">Título:</label>
                 <input 
@@ -55,6 +59,7 @@ session_start();
                 <label for="directores">Director</label>
             <select name="directores">
                 <?php
+                    $currentDirector = ($pelicula != '') ? $pelicula['id_director'] : '';
                     $currentDirector = ($pelicula != '') ? $pelicula['id_director'] : '';
                     while($director = mysqli_fetch_assoc($lista_directores)){
                         $selected = ($currentDirector == $director['id']) ? 'selected' : '';
@@ -86,6 +91,7 @@ session_start();
                 }
                 echo "</div>";
                 unset($_SESSION['datos_insertados']);//limpiar los datos después de mostrarlos
+                unset($_SESSION['accion']);//limpiar los datos después de mostrarlos
             }
         ?>
         
