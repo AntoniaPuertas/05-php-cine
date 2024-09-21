@@ -1,6 +1,9 @@
 <?php
     require 'includes/funciones_peliculas.php';
+    require_once 'sesion/check_session.php';
+
     $lista_peliculas = obtener_peliculas();
+    require_login();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +17,7 @@
 <body>
     <div class="container">
         <header>
-
+            <a id="cerrarSesion" class="derecha" href="sesion/logout.php">Cerrar sesión</a>
         </header>
         <main>
             <h1>Administación</h1>

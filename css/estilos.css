@@ -12,6 +12,51 @@ body{
     max-width: 1200px;
     margin: 0 auto;
 }
+
+/* Formulario de login */
+#loginForm,
+#bloqueSaludo{
+    text-align: right;
+    margin: 0.5rem;
+    padding: 0.5rem 0;
+}
+#loginForm input{
+    padding: 0.2rem;
+}
+
+#loginForm button {
+    display: inline;
+}
+
+#bloqueSaludo{
+    display: none;
+}
+
+#saludo{
+    display: inline;
+}
+
+#cerrarSesion,
+#admin{
+    text-decoration: none;
+    background-color: #80af8b;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    color: white;
+    border-radius: 0.2rem;
+}
+
+#cerrarSesion:hover,
+#admin:hover{
+    background-color: #6f9878;
+}
+
+.derecha{
+    display: block;
+    text-align: right;
+}
+
+/* página principal */
 h1{
     text-align: center;
     margin: 0.5rem;

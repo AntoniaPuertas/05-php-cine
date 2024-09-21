@@ -1,10 +1,10 @@
 <?php
 session_start();
+require_once 'sesion/check_session.php';
     require 'includes/funciones_directores.php';
     require 'includes/funciones_peliculas.php';
 
-    require 'includes/funciones_peliculas.php';
-
+    require_login();
     $lista_directores = obtener_directores();
 
     //comprobar de dónde viene la llamada
@@ -30,6 +30,9 @@ session_start();
 </head>
 <body>
     <div class="container">
+        <header>
+            <a id="cerrarSesion" class="derecha" href="sesion/logout.php">Cerrar sesión</a>
+        </header>
         <?php echo ($pelicula != '') ? '<h1>Modificar Película</h1>' : '<h1>Registrar nueva película</h1>' ?>
         
         <form class="formulario-creacion" action="includes/control_peliculas.php" method="post">

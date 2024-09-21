@@ -14,7 +14,22 @@
 <body>
     <div class="container">
         <header>
-
+        <div class="login-container">
+        <?php
+        if (session_status() == PHP_SESSION_NONE) { ?>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Nombre de usuario" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button class="verMas" type="submit">Iniciar Sesión</button>
+            </form>
+        <?php } ?>
+        <div id="bloqueSaludo">
+            <h2 id="saludo">Inicio de Sesión</h2>
+            <a id="cerrarSesion" href="sesion/logout.php">Cerrar sesión</a>
+            <a href="admin.php" id="admin">Admin</a>
+        </div>
+        
+    </div>
         </header>
         <main>
             <h1>Películas</h1>
@@ -36,5 +51,6 @@
         </footer>
         
     </div>
+    <script src="js/funciones.js"></script>
 </body>
 </html>
